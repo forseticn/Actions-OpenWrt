@@ -8,9 +8,8 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-   # FEEDS_CONF: feeds.conf.default
-  CONFIG_FILE: config/lede.config
-  DIY_SH: diy/lede.sh
+  CONFIG_FILE: .config
+  DIY_SH: diy.sh
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
   TZ: Asia/Shanghai
