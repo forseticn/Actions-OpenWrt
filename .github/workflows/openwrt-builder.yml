@@ -69,8 +69,6 @@ jobs:
     - name: Update & Install feeds 更新并安装源
       working-directory: ./openwrt
       run: |
-        src-git passwall_packages https://github.com/xiaorouji/openwrt-passwall-packages.git;main
-        src-git passwall https://github.com/xiaorouji/openwrt-passwall.git;main
         ./scripts/feeds update -a
         ./scripts/feeds install -a
 
