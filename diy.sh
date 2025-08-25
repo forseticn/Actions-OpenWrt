@@ -22,13 +22,6 @@ sed -i 's/"admin"/"admin", "services"/g; s/admin\//admin\/services\//g' feeds/lu
 sed -i 's/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/*.htm
 sed -i 's|admin\\|admin\\/services\\|g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/container.htm
 
-# 修复 sing-box 的编译问题（去掉已废弃的 with_ech tag）
-if [ -f "feeds/packages/net/sing-box/Makefile" ]; then
-  echo "Patching sing-box Makefile to remove deprecated with_ech tag..."
-  sed -i 's/,with_ech//g' feeds/packages/net/sing-box/Makefile
-  sed -i 's/with_ech,//g' feeds/packages/net/sing-box/Makefile
-  sed -i 's/with_ech//g' feeds/packages/net/sing-box/Makefile
-fi
 
 rm -rf feeds/luci/applications/luci-app-passwall
 rm -rf feeds/luci/applications/luci-app-passwall2
