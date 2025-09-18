@@ -1,3 +1,5 @@
+
+# 没有docker mosdns 有smartdns passwall passwall2
 #!/bin/bash
 #
 # https://github.com/P3TERX/Actions-OpenWrt
@@ -27,8 +29,6 @@ sed -i 's|admin\\|admin\\/services\\|g' feeds/luci/applications/luci-app-dockerm
 # rm -rf feeds/luci/applications/luci-app-passwall2
 # rm -rf feeds/luci/applications/luci-app-openclash
 # git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-
-
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
