@@ -18,25 +18,6 @@ sed -i 's/192.168.1.1/10.0.0.3/g' package/base-files/luci2/bin/config_generate
 # 清除登陆密码
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
 
-# 调整 Docker 到 服务 菜单
-# sed -i 's/"admin"/"admin", "services"/g' feeds/luci/applications/luci-app-dockerman/luasrc/controller/*.lua
-# sed -i 's/"admin"/"admin", "services"/g; s/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/model/cbi/dockerman/*.lua
-# sed -i 's/admin\//admin\/services\//g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/*.htm
-# sed -i 's|admin\\|admin\\/services\\|g' feeds/luci/applications/luci-app-dockerman/luasrc/view/dockerman/container.htm
-
-
-# rm -rf feeds/luci/applications/luci-app-passwall
-# rm -rf feeds/luci/applications/luci-app-passwall2
-# rm -rf feeds/luci/applications/luci-app-openclash
-# git clone https://github.com/xiaorouji/openwrt-passwall package/passwall
-
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
-# 移除 openwrt feeds 自带的核心包
-rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box}
-git clone https://github.com/sbwml/openwrt_helloworld package/helloworld
-
-# 更新 golang 1.23 版本
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
