@@ -69,7 +69,12 @@ jobs:
     - name: Update & Install feeds 更新并安装源
       working-directory: ./openwrt
       run: |
-        ./scripts/feeds update -a       
+        ./scripts/feeds update -a
+
+        # 替换 Golang
+        rm -rf feeds/packages/lang/golang
+        svn export https://github.com/immortalwrt/packages/trunk/lang/golang feeds/packages/lang/golang 
+        
         ./scripts/feeds install -a
 
     - name: Load custom configuration 加载自定义配置
