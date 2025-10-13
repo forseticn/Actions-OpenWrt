@@ -70,6 +70,11 @@ jobs:
       working-directory: ./openwrt
       run: |
         ./scripts/feeds update -a
+        
+        # 替换golang为最新版
+        rm -rf feeds/packages/lang/golang
+        svn export https://github.com/immortalwrt/packages/trunk/lang/golang feeds/packages/lang/golang
+        
         ./scripts/feeds install -a
 
     - name: Load custom configuration 加载自定义配置
