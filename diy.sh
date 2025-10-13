@@ -26,3 +26,10 @@ svn export https://github.com/immortalwrt/packages/trunk/lang/golang feeds/packa
 
 ./scripts/feeds install -a
 
+# 替换 Clash 核心
+echo "Replacing Clash Meta Core..."
+CLASH_CORE_URL="https://github.com/MetaCubeX/mihomo/releases/download/v1.18.3/mihomo-linux-amd64-compatible.gz"
+mkdir -p ./files/etc/openclash/core/
+wget -qO- $CLASH_CORE_URL | gunzip > ./files/etc/openclash/core/clash_meta
+chmod +x ./files/etc/openclash/core/clash_meta
+
