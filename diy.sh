@@ -18,6 +18,10 @@ sed -i 's/192.168.1.1/10.0.0.3/g' package/base-files/luci2/bin/config_generate
 # 清除登陆密码
 sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
 
+# 替换最新的golang
+rm -rf feeds/packages/lang/golang
+svn export https://github.com/immortalwrt/packages/trunk/lang/golang feeds/packages/lang/golang 
+
 
 # 替换 Passwall / Passwall2 / MosDNS
 rm -rf feeds/smpackage/luci-app-passwall
