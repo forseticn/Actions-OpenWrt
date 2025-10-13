@@ -26,3 +26,16 @@ mkdir -p ./files/etc/openclash/core/
 wget -qO- $CLASH_CORE_URL | gunzip > ./files/etc/openclash/core/clash_meta
 chmod +x ./files/etc/openclash/core/clash_meta
 
+# passwall 最新版本
+rm -rf feeds/smpackage/luci-app-passwall
+svn export https://github.com/fw876/helloworld/trunk/luci-app-passwall feeds/smpackage/luci-app-passwall
+
+# passwall2 最新版本
+rm -rf feeds/smpackage/luci-app-passwall2
+svn export https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 feeds/smpackage/luci-app-passwall2
+
+# 如果有核心替换，分开放
+mkdir -p ./files/etc/openclash/core
+wget ... -O ./files/etc/openclash/core/clash_passwall
+wget ... -O ./files/etc/openclash/core/clash_passwall2
+chmod +x ./files/etc/openclash/core/*
