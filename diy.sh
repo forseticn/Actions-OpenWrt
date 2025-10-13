@@ -1,5 +1,5 @@
 
-# 没有docker mosdns 有smartdns passwall passwall2
+# 没有docker  有smartdns mosdns passwall passwall2（lede自带）
 #!/bin/bash
 #
 # https://github.com/P3TERX/Actions-OpenWrt
