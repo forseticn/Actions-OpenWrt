@@ -1,11 +1,13 @@
 
 # 没有docker  有smartdns mosdns passwall passwall2（lede自带）
 
-# 设置默认IP地址
-sed -i 's/192.168.1.1/10.0.0.3/g' package/base-files/files/bin/config_generate
+# 修改默认 IP（务必在 feeds 更新之前执行）
+CFG_FILE=$(find package/base-files -name config_generate)
+[ -n "$CFG_FILE" ] && sed -i 's/192.168.1.1/10.0.0.3/g' "$CFG_FILE"
 
-# 清除登陆密码
-sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' package/lean/default-settings/files/zzz-default-settings
+# 清除默认登录密码（root 无密码）
+ZZZ_FILE="package/lean/default-settings/files/zzz-default-settings"
+[ -f "$ZZZ_FILE" ] && sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.//g' "$ZZZ_FILE"
 
 # drop mosdns and v2ray-geodata packages that come with the source
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
