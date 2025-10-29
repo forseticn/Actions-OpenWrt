@@ -23,9 +23,9 @@ git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+# 替换 OpenClash 核心为 Clash Meta (x86_64)
 CORE_DIR="feeds/luci/applications/luci-app-openclash/root/etc/openclash/core"
 META_URL="https://github.com/MetaCubeX/mihomo/releases/download/v1.19.15/mihomo-linux-amd64-v1-v1.19.15.gz"
-
 rm -rf ${CORE_DIR}
 mkdir -p ${CORE_DIR}
 wget -qO- ${META_URL} | gzip -d > ${CORE_DIR}/clash-meta
