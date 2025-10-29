@@ -28,3 +28,11 @@ git clone https://github.com/xiaorouji/openwrt-passwall package/passwall-luci
 # 移除 openwrt feeds 过时的luci版本
 rm -rf feeds/luci/applications/luci-app-passwall2
 git clone https://github.com/xiaorouji/openwrt-passwall2 package/passwall2-luci
+
+# 替换clash的核心
+CORE_DIR="feeds/luci/applications/luci-app-openclash/root/etc/openclash/core"
+META_URL="https://raw.githubusercontent.com/vernesong/OpenClash/core/master/dev/clash-meta-linux-amd64.tar.gz"
+rm -rf ${CORE_DIR}
+mkdir -p ${CORE_DIR}
+wget -qO- ${META_URL} | tar xz -C ${CORE_DIR}
+chmod +x ${CORE_DIR}/clash-meta
