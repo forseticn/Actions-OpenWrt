@@ -13,6 +13,8 @@ git clone https://github.com/sbwml/v2ray-geodata package/v2ray-geodata
 
 src-git passwall_packages https://github.com/Openwrt-Passwall/openwrt-passwall-packages.git;main
 src-git passwall_luci https://github.com/Openwrt-Passwall/openwrt-passwall.git;main
+src-git passwall2 https://github.com/Openwrt-Passwall/openwrt-passwall2.git;main
+
 
 # 更新 feeds
 ./scripts/feeds update -a
