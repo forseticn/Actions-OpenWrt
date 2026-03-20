@@ -7,7 +7,7 @@ env:
 on:
   workflow_dispatch:
   schedule:
-  - cron: '0 10 * * *'
+    - cron: '0 10 * * *'
 
 jobs:
   check:
@@ -17,12 +17,13 @@ jobs:
     - name: Get Commit Hash
       id: getHash
       run: |
-        git clone --depth 1 $REPO_URL -b $REPO_BRANCH .
+        git clone --depth 1 $REPO_URL -b $REPO_BRANCH repo
+        cd repo
         echo "commitHash=$(git rev-parse HEAD)" >> $GITHUB_ENV
 
     - name: Compare Commit Hash
       id: cacheHash
-      uses: actions/cache@main
+      uses: actions/cache@v4
       with:
         path: .commitHash
         key: HEAD-${{ env.commitHash }}
@@ -34,14 +35,15 @@ jobs:
 
     - name: Trigger build
       if: steps.cacheHash.outputs.cache-hit != 'true'
-      uses: peter-evans/repository-dispatch@main
+      uses: peter-evans/repository-dispatch@v3
       with:
         token: ${{ secrets.ACTIONS_TRIGGER_PAT }}
         event-type: Source Code Update
 
-    - name: Delete Old Workflows
-      uses: Mattraks/delete-workflow-runs@main
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        retain_days: 3
-        keep_minimum_runs: 3
+    - name: Delete Old Workflows (Keep 10)
+      run: |
+        gh run list --limit 200 --json databaseId,createdAt \
+        | jq -r 'sort_by(.createdAt) | reverse | .[10:] | .[].databaseId' \
+        | xargs -r -n1 gh run delete
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
