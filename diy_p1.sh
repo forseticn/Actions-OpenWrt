@@ -1,10 +1,9 @@
 #!/bin/sh
 
-echo "== 删除旧版 OpenClash =="
-
+# 清理旧版本
 rm -rf feeds/luci/applications/luci-app-openclash
 rm -rf package/*/luci-app-openclash
+rm -rf package/OpenClash
 
-echo "== 拉取最新版 OpenClash =="
-
-git clone https://github.com/vernesong/OpenClash.git package/OpenClash
+# 拉最新
+git clone --depth=1 https://github.com/vernesong/OpenClash.git package/OpenClash
